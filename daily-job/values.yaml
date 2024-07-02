@@ -1,0 +1,13 @@
+daily:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 20
+  image:
+    repository: nickgofman/scraper-daily
+    tag: 1.0
+
+env:
+  kafkaSASL:
+    key: client-passwords
+    name: kafka-user-passwords
+
+kubernetesClusterDomain: cluster.local

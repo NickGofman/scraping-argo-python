@@ -1,0 +1,14 @@
+live:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 20
+  image:
+    repository: nickgofman/scraper-live
+    tag: 1.0
+
+env:
+  discordUrl: https://discord.com/api/webhooks/1257687910757564549/NtrvGNFPUThqVGdJGos_-hFKFv0K8uJ2lQd3mX8RX2jyPIEReNwAMzyYo7D2BpNKTXnO
+  kafkaSASL:
+    key: client-passwords
+    name: kafka-user-passwords
+
+kubernetesClusterDomain: cluster.local
