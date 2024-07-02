@@ -17,31 +17,39 @@ env:
   kafkaSASL:
     key: client-passwords
     name: kafka-user-passwords
-  repoName: "evgenys-scraping"
-  repoUrl: "https://github.com/Evgeny-Nik/scraping_project_manifests/raw/master/docs/"
+  repoName: "scraping-argo-python"
+  repoUrl: "https://github.com/NickGofman/scraping-argo-python/raw/main/docs/"
   dailyChart: "daily-job-0.1.0.tgz"
   liveChart: "live-job-0.1.0.tgz"
 
 backend:
   name: backend
   image:
-    repository: evgenyniko/scraping_project-backend
-    tag: 1.0.0
+    repository: nickgofman/scraper-back
+    tag: 1.0
   imagePullPolicy: Always
   replicas: 1
 
 frontend:
   name: frontend
   image:
-    repository: evgenyniko/scraping_project-frontend
-    tag: 1.0.0
+    repository: nickgofman/scraper-front
+    tag: 1.0
   targetPort: 5000
   imagePullPolicy: Always
-  ports:
-  - port: 5000
-    protocol: TCP
-    targetPort: 5000
   replicas: 1
-  type: NodePort
+
+service:
+  name: http
+  port: 5000
+  protocol: TCP
+  targetPort: 5000
+  type: ClusterIP
+
+ingress:
+  className: nginx
+  host: "example.com"
+  path: /
+  pathType: Prefix
 
 kubernetesClusterDomain: cluster.local

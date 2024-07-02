@@ -39,17 +39,3 @@ spec:
             - containerPort: {{ .Values.frontend.targetPort }}
           resources: {}
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "scraping-app.fullname" . }}-frontend
-  labels:
-    {{- include "scraping-app.labels" . | nindent 4 }}
-spec:
-  type: {{ .Values.frontend.type }}
-  selector:
-    app: frontend
-    {{- include "scraping-app.selectorLabels" . | nindent 4 }}
-  ports:
-    {{- .Values.frontend.ports | toYaml | nindent 2 }}
